@@ -2,6 +2,9 @@ import React from 'react'
 import items from './items.css'
 
 const Items = (props) => {
+
+  const displayName = props.name.length > 30 ? `${props.name.slice(0, 30)}...` : props.name;
+
   return (
     <div className='items'>
         <div className="img">
@@ -9,8 +12,8 @@ const Items = (props) => {
 
         </div>
         <div className="text-content">
-            <h3>{props.name}</h3>
-            <h2>{props.price}</h2>
+            <p>{displayName}</p>
+            <h5>${props.price}</h5>
         </div>
     </div>
   )

@@ -1,43 +1,33 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+
+import React, { useContext, useEffect, useState } from 'react'
 import Items from '../Items/Items'
+import popular from './popular.css'
+import { DataContext } from '../../Context/DataContext'
 
 const Popular = () => {
 
-    const [data,setData] = useState(null)
-    const [isLoading,setIsLoading] = useState(true)
+    const {data,loading} = useContext(DataContext)
 
-    useEffect(()=>{
 
-        const fetchData = async ()=>{
-            try {
-                const responce = await axios.get("http://localhost:8080/api/get-by-category/popular");
-                setData(responce.data)
+    if (loading) {
+        return <p>loading...</p>
+    }
 
-            } catch (error) {
-                console.error(error)
-            }
-            finally{
-                setIsLoading(false)
-            }
-        }
-        fetchData()
-
-    },[])
-
-    
-
-  return (
-    <div className='popular'>
-        {isLoading ? <p> loading..</p>:(
-
+    return (
+        <div className='popular'>
+            <h2>Popular Products</h2>
             <div className="showdata">
-                <h1>hi</h1>
-            </div>
-        )}
+                {data.data.map((item, i) => {
+                    if (item.category === 'popular') {
+                        return <Items key={i} img={item.img} name={item.name} price={item.price} />
+                    }
 
-    </div>
-  )
+                })}
+            </div>
+
+        </div>
+    )
+
 }
 
 export default Popular
