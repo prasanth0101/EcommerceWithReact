@@ -7,6 +7,8 @@ import { DataContext } from '../Context/DataContext'
 const ShopCategory = (props) => {
   const {data} = useContext(DataContext)
 
+
+
   return (
     <div>
       <div className="banner">
@@ -16,6 +18,7 @@ const ShopCategory = (props) => {
         {data.data.map((item, i) => {
           if (item.category === props.category) {
               return <Items key={i} 
+                id={item.id}
                 img={item.img}
                 name={item.name}
                 price={item.price}

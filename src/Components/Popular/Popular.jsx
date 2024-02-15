@@ -19,7 +19,7 @@ const Popular = () => {
             <div className="showdata">
                 {data.data.map((item, i) => {
                     if (item.category === 'popular') {
-                        return <Items key={i} img={item.img} name={item.name} price={item.price} />
+                        return <Items key={i} id={item.id} img={item.img} name={item.name} price={item.price} />
                     }
 
                 })}

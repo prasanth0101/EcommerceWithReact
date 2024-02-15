@@ -26,7 +26,9 @@ const DataProvider = ({children}) => {
         fetchData()
     }, [])
     
-    
+   if(loading){
+    return(<p>loading...</p>)
+   }
     
     return (
         <DataContext.Provider value={{data,loading}}>
